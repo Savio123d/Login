@@ -9,15 +9,17 @@ botao.addEventListener('click', function () {
         senha: document.getElementById('senha').value
 
     };
-    console.log(usuario)
+
     listaUsuario.push(usuario);
     listaJson = JSON.stringify(listaUsuario);
     localStorage.setItem("usuarios", listaJson);
+    listar();
 });
 
 function listar(){
     const usuarioCadstrados = JSON.parse(localStorage.getItem("usuarios") || []);
     let tabela = document.getElementById('lista_usuarios');
+    tabela.innerHTML = '';
     usuarioCadstrados.forEach(usuario, index => {
 
         let linha = document.createElement('tr');
@@ -25,7 +27,7 @@ function listar(){
         linha.innerHTML = `
         <td>${usuario.usuario}</td>
         <td>${usuario.senha}</td>
-        <td> </td>
+        <td><button onclick="excluirUsuario(${index})"> Excluir</button> </td>
         `;
         
        tabela.appendChild(linha); 

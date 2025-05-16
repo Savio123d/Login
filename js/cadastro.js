@@ -17,5 +17,18 @@ botao.addEventListener('click', function () {
 
 function listar(){
     const usuarioCadstrados = JSON.parse(localStorage.getItem("usuarios") || []);
-    
+    let tabela = document.getElementById('lista_usuarios');
+    usuarioCadstrados.forEach(usuario, index => {
+
+        let linha = document.createElement('tr');
+        
+        linha.innerHTML = `
+        <td>${usuario.usuario}</td>
+        <td>${usuario.senha}</td>
+        <td> </td>
+        `;
+        
+       tabela.appendChild(linha); 
+    });
 }
+listar();

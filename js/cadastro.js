@@ -27,7 +27,8 @@ function listar(){
         linha.innerHTML = `
         <td>${usuario.usuario}</td>
         <td>${usuario.senha}</td>
-        <td><button onclick="excluirUsuario(${index})"> Excluir</button> </td>
+        <td><button onclick="editarUsuario(${index})"> Editar</button> </td>
+         <td><button onclick="excluirUsuario(${index})"> Excluir</button> </td>
         `;
         
        tabela.appendChild(linha); 

@@ -16,22 +16,22 @@ botao.addEventListener('click', function () {
     listar();
 });
 
-function listar(){
-    const usuarioCadstrados = JSON.parse(localStorage.getItem("usuarios") || []);
-    let tabela = document.getElementById('lista_usuarios');
-    tabela.innerHTML = '';
-    usuarioCadstrados.forEach(usuario, index => {
+function listar() {
+    const listaUsuarioCad = JSON.parse(localStorage.getItem("usuarios")) || [];
+    const tabelaListaUsuarios = document.getElementById('listaUsuarios');
+    tabelaListaUsuarios.innerHTML = "";
 
-        let linha = document.createElement('tr');
-        
+    listaUsuarioCad.forEach((usuario, index) => {
+        const linha = document.createElement('tr');
         linha.innerHTML = `
-        <td>${usuario.usuario}</td>
-        <td>${usuario.senha}</td>
-        <td><button onclick="editarUsuario(${index})"> Editar</button> </td>
-         <td><button onclick="excluirUsuario(${index})"> Excluir</button> </td>
+            <td>${usuario.login}</td>
+            <td>${usuario.senha}</td>
+            <td>
+                <button onclick="editarUsuario(${index})">Editar</button>
+                <button onclick="excluirUsuario(${index})">Remover</button>
+            </td>
         `;
-        
-       tabela.appendChild(linha); 
+        tabelaListaUsuarios.appendChild(linha);
     });
 }
 listar();

@@ -1,15 +1,15 @@
-const botao = document.getElementById('btnCadastrar');
+// cadastro com crud
 
+const botao = document.getElementById('btnCadastrar');
 const listaUsuario = [];
 
+// criacao registro
 botao.addEventListener('click', function () {
-
     const usuario = {
         usuario: document.getElementById('login').value,
         senha: document.getElementById('senha').value
-
     };
-
+    //console.log(usuario);
     listaUsuario.push(usuario);
     listaJson = JSON.stringify(listaUsuario);
     localStorage.setItem("usuarios", listaJson);
@@ -17,21 +17,22 @@ botao.addEventListener('click', function () {
 });
 
 function listar() {
-    const listaUsuarioCad = JSON.parse(localStorage.getItem("usuarios")) || [];
-    const tabelaListaUsuarios = document.getElementById('listaUsuarios');
-    tabelaListaUsuarios.innerHTML = "";
+    const usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
+    let tabela = document.getElementById('lista_usuarios');
+    tabela.innerHTML = '';
+    usuariosCadastrados.forEach((usuario, index) => {
+        let linha = document.createElement('tr');
 
-    listaUsuarioCad.forEach((usuario, index) => {
-        const linha = document.createElement('tr');
         linha.innerHTML = `
-            <td>${usuario.login}</td>
+            <td>${usuario.usuario}</td>
             <td>${usuario.senha}</td>
             <td>
                 <button onclick="editarUsuario(${index})">Editar</button>
-                <button onclick="excluirUsuario(${index})">Remover</button>
+                <button onclick="excluirUsuario(${index})">Excluir</button>
             </td>
         `;
-        tabelaListaUsuarios.appendChild(linha);
+        tabela.appendChild(linha);
     });
 }
+
 listar();

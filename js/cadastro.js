@@ -35,4 +35,19 @@ function listar() {
     });
 }
 
+function editarUsuario(index){
+
+    const usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
+    usuariosCadastrados.splice(index,1);
+
+}
+
+function excluirUsuario(index) {
+    const usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+    usuariosCadastrados.splice(index,1);
+    listaJson = JSON.stringify(usuariosCadastrados);
+    localStorage.setItem("usuarios",listaJson);
+}
+
 listar();

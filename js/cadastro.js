@@ -11,13 +11,14 @@ botao.addEventListener('click', function () {
         senha: document.getElementById('senha').value
     };
     const indexEditar = document.getElementById("indexEditado").value;
-    if(indexEditar !== " "){
-         listaUsuario[indexEditar] = usuario;
-         document.getElementById("indexEditado").value = " ";
+    if(indexEditar !== ""){
+        listaUsuario[indexEditar] = usuario;
+        document.getElementById("indexEditado").value = "";
     }else{
-       listaUsuario.push(usuario);
+        listaUsuario.push(usuario);
     }
     //console.log(usuario);
+    
     listaJson = JSON.stringify(listaUsuario);
     localStorage.setItem("usuarios", listaJson);
     document.getElementById('login').value = '';
@@ -44,20 +45,19 @@ function listar() {
     });
 }
 
-function editarUsuario(index){
+function editarUsuario(index) {
     const usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
     //usuariosCadastrados[3];
     const objUsuario = usuariosCadastrados[index];
     document.getElementById("login").value = objUsuario.usuario;
     document.getElementById("senha").value = objUsuario.senha;
-    document.getElementById("indexEditado").value = index;
-
+    document.getElementById('indexEditado').value = index;
 }
 
-function excluirUsuario(index){
+function excluirUsuario(index) {
     const usuariosCadastrados = JSON.parse(localStorage.getItem("usuarios")) || [];
 
-    if(confirm("Voce realmente quer excluir?")){
+    if (confirm("Voce realmente quer excluir?")) {
         usuariosCadastrados.splice(index, 1);
         listaJson = JSON.stringify(usuariosCadastrados);
         localStorage.setItem("usuarios", listaJson);
